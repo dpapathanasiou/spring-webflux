@@ -18,7 +18,7 @@ public class WeatherHandler {
         Mono<String> forecast = client.getForecast(request.pathVariable("lat"), request.pathVariable("long"));
         return ServerResponse
                 .ok()
-                .contentType(MediaType.TEXT_PLAIN)
+                .contentType(MediaType.TEXT_HTML)
                 .body(forecast, String.class);
     }
 }

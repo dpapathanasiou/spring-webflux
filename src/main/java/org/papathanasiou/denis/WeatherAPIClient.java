@@ -9,7 +9,11 @@ import reactor.core.publisher.Mono;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class WeatherAPIClient {
@@ -52,23 +56,34 @@ public class WeatherAPIClient {
                 .map(json -> parseForecastURL.apply(json));
     }
 
-    Function<String, String> parseForecastResponse = json -> {
+    Function<String, List<JSONObject>> parseForecastResponse = json -> {
         // within the json returned by the call to `/forecast`,
         // `"properties": "periods":` contains a list of forecasts,
-        // starting with `"name": "Today"` as the current one we want
+        // which are the collection of objects we want.
         JSONObject obj = new JSONObject(json);
         if( obj.has("properties") ) {
             JSONObject properties = obj.getJSONObject("properties");
             if( properties.has("periods") ) {
                 return StreamSupport.stream(properties.getJSONArray("periods").spliterator(), false)
                         .map(JSONObject.class::cast)
-                        .findFirst()
-                        .map(x -> x.getString("detailedForecast"))
-                        .orElse(EMPTY);
+                        .collect(Collectors.toList());
             }
         }
-        return EMPTY;
+        return Collections.emptyList();
     };
+
+    Function<List<JSONObject>, String> generateResultsTable = periods ->
+            // Format the list of time period objects into a single
+            // html table with headers, or a `not found` message.
+            periods.isEmpty() ? "Forecast information is unavailable"
+                    : String.join("", Arrays.asList(
+                    "<table><tr><th>Time Period</th><th>Forecast</th></tr>",
+                    periods.stream()
+                            .map(x -> String.format("<tr><td>%s</td><td>%s</td></tr>",
+                                    x.getString("name"),
+                                    x.getString("detailedForecast")))
+                            .collect(Collectors.joining()),
+                    "</table>"));
 
     /**
      * Use the string path returned and parsed from the call to `/points/lat,long`
@@ -81,7 +96,8 @@ public class WeatherAPIClient {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(String.class)
-                .map(json -> parseForecastResponse.apply(json));
+                .map(json -> parseForecastResponse.apply(json))
+                .map(generateResultsTable);
     }
 
     Function<String, String> parseForecastURLPath = url -> {
