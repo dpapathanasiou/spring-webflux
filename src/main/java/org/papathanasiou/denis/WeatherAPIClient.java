@@ -62,24 +62,10 @@ public class WeatherAPIClient {
             if( properties.has("periods") ) {
                 return StreamSupport.stream(properties.getJSONArray("periods").spliterator(), false)
                         .map(JSONObject.class::cast)
-                        .filter(x -> x.has("name"))
-                        .filter(x -> x.getString("name").equals("Today"))
-                        .filter(x -> x.has("detailedForecast"))
                         .findFirst()
                         .map(x -> x.getString("detailedForecast"))
                         .orElse(EMPTY);
             }
-        }
-        return EMPTY;
-    };
-
-    Function<String, String> parseForecastURLPath = url -> {
-        // split the string `https://api.weather.gov/gridpoints/OKX/32,37/forecast`
-        // and remove the base url, returning just the relevant path
-        try {
-            return new URL(url).toURI().getPath();
-        } catch (MalformedURLException | URISyntaxException e) {
-            System.err.println(e.getMessage());
         }
         return EMPTY;
     };
@@ -93,6 +79,17 @@ public class WeatherAPIClient {
                 .bodyToMono(String.class)
                 .map(json -> parseForecastResponse.apply(json));
     }
+
+    Function<String, String> parseForecastURLPath = url -> {
+        // split the string `https://api.weather.gov/gridpoints/OKX/32,37/forecast`
+        // and remove the base url, returning just the relevant path
+        try {
+            return new URL(url).toURI().getPath();
+        } catch (MalformedURLException | URISyntaxException e) {
+            System.err.println(e.getMessage());
+        }
+        return EMPTY;
+    };
 
     public Mono<String> getForecast(String latitude, String longitude) {
         return lookupLatLong(latitude, longitude)
