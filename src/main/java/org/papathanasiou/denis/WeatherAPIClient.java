@@ -70,6 +70,10 @@ public class WeatherAPIClient {
         return EMPTY;
     };
 
+    /**
+     * Use the string path returned and parsed from the call to `/points/lat,long`
+     * to fetch the actual forecast information.
+     */
     Mono<String> lookupForecast(String path) {
         return client
                 .get()
@@ -91,6 +95,13 @@ public class WeatherAPIClient {
         return EMPTY;
     };
 
+    /**
+     * Take the `latitude` and `longitude` of the external request,
+     * and make two client calls:
+     * 1 - to `/points/lat,long` which provides the forecast url
+     * 2 - to the resulting forecast url, which contains the actual data
+     * And finally parses the result of the second to the desired value.
+     */
     public Mono<String> getForecast(String latitude, String longitude) {
         return lookupLatLong(latitude, longitude)
                 .map(forecastURL -> parseForecastURLPath.apply(forecastURL))
