@@ -19,7 +19,6 @@ import java.util.stream.StreamSupport;
 public class WeatherAPIClient {
     private static final String baseURL = "https://api.weather.gov/";
     private static final String userAgent = "spring-webflux/0.0.1 +http://github.com/dpapathanasiou/spring-webflux";
-    private static final String EMPTY = "";
 
     private WebClient client;
 
@@ -40,7 +39,7 @@ public class WeatherAPIClient {
                 return properties.getString("forecast");
             }
         }
-        return EMPTY;
+        return "";
     };
 
     /**
@@ -108,7 +107,7 @@ public class WeatherAPIClient {
         } catch (MalformedURLException | URISyntaxException e) {
             System.err.println(e.getMessage());
         }
-        return EMPTY;
+        return "";
     };
 
     /**
@@ -121,7 +120,7 @@ public class WeatherAPIClient {
     public Mono<String> getForecast(String latitude, String longitude) {
         return lookupLatLong(latitude, longitude)
                 .map(forecastURL -> parseForecastURLPath.apply(forecastURL))
-                .filter(forecastPath -> ! forecastPath.equals(EMPTY))
+                .filter(forecastPath -> ! forecastPath.isEmpty())
                 .flatMap(this::lookupForecast);
     }
 }
