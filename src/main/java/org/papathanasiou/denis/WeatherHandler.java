@@ -15,8 +15,9 @@ public class WeatherHandler {
         return ServerResponse
                 .ok()
                 .contentType(MediaType.TEXT_PLAIN)
+                //.body(BodyInserters.fromValue(client.lookupLatLong(request.pathVariable("lat"), request.pathVariable("long")).bodyToMono(String.class)));
                 .body(BodyInserters.fromValue(String.format("Hello, lat %s, long %s!",
                        request.pathVariable("lat"),
-                       request.pathVariable("long"))))  ;
+                       request.pathVariable("long"))));
     }
 }
