@@ -9,8 +9,14 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class WeatherHandler {
+    private WeatherAPIClient client = new WeatherAPIClient();
+
     public Mono<ServerResponse> getForecast(ServerRequest request) {
-        return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-                .body(BodyInserters.fromValue("Hello, Spring!"));
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(BodyInserters.fromValue(String.format("Hello, lat %s, long %s!",
+                       request.pathVariable("lat"),
+                       request.pathVariable("long"))))  ;
     }
 }

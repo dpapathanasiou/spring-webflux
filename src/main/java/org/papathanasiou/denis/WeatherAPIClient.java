@@ -6,10 +6,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 public class WeatherAPIClient {
-    public Mono<ClientResponse> lookupLatLong(Float latitude, Float longitude) {
-        return WebClient.create(String.format("https://api.weather.gov/points/%f,%f", latitude, longitude))
-                .get() // TODO: add user-agent string   
+    public Mono<ClientResponse> lookupLatLong(String latitude, String longitude) {
+        return WebClient.create(String.format("https://api.weather.gov/points/%s,%s", latitude, longitude))
+                .get() // TODO: add user-agent string
                 .accept(MediaType.APPLICATION_JSON)
-                .exchange();
+                .exchange();  // resulting `"properties": "forecast":` contains the URL with the forecast data
     }
 }
