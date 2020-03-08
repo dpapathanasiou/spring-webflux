@@ -15,10 +15,10 @@ public class WeatherHandler {
     }
 
     public Mono<ServerResponse> getForecast(ServerRequest request) {
-        Mono<String> forecast = client.getForecast(request.pathVariable("lat"), request.pathVariable("long"));
         return ServerResponse
                 .ok()
                 .contentType(MediaType.TEXT_HTML)
-                .body(forecast, String.class);
+                .body(client.getForecast(request.pathVariable("lat"), request.pathVariable("long")),
+                        String.class);
     }
 }
