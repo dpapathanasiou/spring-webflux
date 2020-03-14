@@ -1,0 +1,92 @@
+{
+    "@context": [
+        "https://raw.githubusercontent.com/geojson/geojson-ld/master/contexts/geojson-base.jsonld",
+        {
+            "wx": "https://api.weather.gov/ontology#",
+            "s": "https://schema.org/",
+            "geo": "http://www.opengis.net/ont/geosparql#",
+            "unit": "http://codes.wmo.int/common/unit/",
+            "@vocab": "https://api.weather.gov/ontology#",
+            "geometry": {
+                "@id": "s:GeoCoordinates",
+                "@type": "geo:wktLiteral"
+            },
+            "city": "s:addressLocality",
+            "state": "s:addressRegion",
+            "distance": {
+                "@id": "s:Distance",
+                "@type": "s:QuantitativeValue"
+            },
+            "bearing": {
+                "@type": "s:QuantitativeValue"
+            },
+            "value": {
+                "@id": "s:value"
+            },
+            "unitCode": {
+                "@id": "s:unitCode",
+                "@type": "@id"
+            },
+            "forecastOffice": {
+                "@type": "@id"
+            },
+            "forecastGridData": {
+                "@type": "@id"
+            },
+            "publicZone": {
+                "@type": "@id"
+            },
+            "county": {
+                "@type": "@id"
+            }
+        }
+    ],
+    "id": "https://api.weather.gov/points/40.7688,-73.9898",
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [
+            -73.989800000000002,
+            40.768799999999999
+        ]
+    },
+    "properties": {
+        "@id": "https://api.weather.gov/points/40.7688,-73.9898",
+        "@type": "wx:Point",
+        "cwa": "OKX",
+        "forecastOffice": "https://api.weather.gov/offices/OKX",
+        "gridX": 32,
+        "gridY": 37,
+        "forecast": "https://api.weather.gov/gridpoints/OKX/32,37/forecast",
+        "forecastHourly": "https://api.weather.gov/gridpoints/OKX/32,37/forecast/hourly",
+        "forecastGridData": "https://api.weather.gov/gridpoints/OKX/32,37",
+        "observationStations": "https://api.weather.gov/gridpoints/OKX/32,37/stations",
+        "relativeLocation": {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -74.009506999999999,
+                    40.786031999999999
+                ]
+            },
+            "properties": {
+                "city": "West New York",
+                "state": "NJ",
+                "distance": {
+                    "value": 2534.7674838199268,
+                    "unitCode": "unit:m"
+                },
+                "bearing": {
+                    "value": 139,
+                    "unitCode": "unit:degrees_true"
+                }
+            }
+        },
+        "forecastZone": "https://api.weather.gov/zones/forecast/NYZ072",
+        "county": "https://api.weather.gov/zones/county/NYC061",
+        "fireWeatherZone": "https://api.weather.gov/zones/fire/NYZ072",
+        "timeZone": "America/New_York",
+        "radarStation": "KOKX"
+    }
+}
