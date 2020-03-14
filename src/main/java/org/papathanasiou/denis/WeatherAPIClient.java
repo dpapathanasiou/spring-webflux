@@ -22,8 +22,12 @@ public class WeatherAPIClient {
 
     private WebClient client;
 
-    public WeatherAPIClient() {
-        this.client = WebClient.builder()
+    public WeatherAPIClient(WebClient client) {
+        this.client = client;
+    }
+
+    public static WebClient defaultWebClient() {
+        return WebClient.builder()
                 .baseUrl(baseURL)
                 .defaultHeader(HttpHeaders.USER_AGENT, userAgent)
                 .build();

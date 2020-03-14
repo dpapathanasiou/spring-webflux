@@ -11,7 +11,7 @@ public class WeatherHandler {
     private WeatherAPIClient client;
 
     public WeatherHandler() {
-        this.client = new WeatherAPIClient();
+        this.client = new WeatherAPIClient(WeatherAPIClient.defaultWebClient());
     }
 
     public Mono<ServerResponse> getForecast(ServerRequest request) {
