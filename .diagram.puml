@@ -1,0 +1,19 @@
+@startuml
+' Created with PlantUML https://plantuml.com/
+
+participant "<size:30><&person></size>" as client
+participant "<size:30><&code></size>" as jar
+participant "<size:30><&cloud></size>" as api
+
+client -> jar: http://localhost:8080/weather/latitude/longitude
+
+jar -> api: API call to\n<b>/points/latitude,longitude</b>
+api -> jar: <&file> json containing\nforecast (gridpoints) URL
+jar -> jar: parse gridpoints URL
+
+jar -> api: API call to\n<b>/gridpoints/x,y/forecast</b>
+api -> jar: <&file> json containing\ntime period forecasts 
+jar -> jar: parse time period results
+
+jar -> client: HTML table of results
+@enduml
