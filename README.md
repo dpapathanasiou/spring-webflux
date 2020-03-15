@@ -53,9 +53,21 @@ Use [curl](https://curl.haxx.se/) or open a web browser and visit `http://localh
 
 For example, `http://localhost:8080/weather/40.7688/-73.9898` on March 15, 2020 resulted in:
 
-```html
-<table><tr><th>Time Period</th><th>Forecast</th></tr><tr><td>Today</td><td>Sunny. High near 52, with temperatures falling to around 49 in the afternoon. North wind around 8 mph.</td></tr><tr><td>Tonight</td><td>Mostly clear, with a low around 33. Northeast wind around 8 mph.</td></tr><tr><td>Monday</td><td>Mostly sunny, with a high near 45. East wind around 10 mph.</td></tr><tr><td>Monday Night</td><td>A chance of rain showers after 9pm. Mostly cloudy, with a low around 39. Southeast wind 7 to 10 mph. Chance of precipitation is 40%.</td></tr><tr><td>Tuesday</td><td>A chance of rain showers. Mostly cloudy, with a high near 56. South wind around 9 mph, with gusts as high as 21 mph. Chance of precipitation is 50%.</td></tr><tr><td>Tuesday Night</td><td>A slight chance of rain showers before midnight. Partly cloudy, with a low around 36.</td></tr><tr><td>Wednesday</td><td>Sunny, with a high near 48.</td></tr><tr><td>Wednesday Night</td><td>A slight chance of snow showers after midnight. Partly cloudy, with a low around 36.</td></tr><tr><td>Thursday</td><td>A chance of snow showers before 9am, then a chance of rain and snow showers. Mostly cloudy, with a high near 51. Chance of precipitation is 50%.</td></tr><tr><td>Thursday Night</td><td>A chance of rain showers. Mostly cloudy, with a low around 46. Chance of precipitation is 50%.</td></tr><tr><td>Friday</td><td>A chance of rain showers. Cloudy, with a high near 66. Chance of precipitation is 50%.</td></tr><tr><td>Friday Night</td><td>A chance of rain showers. Mostly cloudy, with a low around 45. Chance of precipitation is 40%.</td></tr><tr><td>Saturday</td><td>A chance of rain showers. Partly sunny, with a high near 51. Chance of precipitation is 30%.</td></tr><tr><td>Saturday Night</td><td>A slight chance of snow showers. Partly cloudy, with a low around 29.</td></tr></table>
-```
+|Time Period|Forecast|
+|Today|Sunny. High near 52, with temperatures falling to around 49 in the afternoon. North wind around 8 mph.|
+|Tonight|Mostly clear, with a low around 33. Northeast wind around 8 mph.|
+|Monday|Mostly sunny, with a high near 45. East wind around 10 mph.|
+|Monday Night|A chance of rain showers after 9pm. Mostly cloudy, with a low around 39. Southeast wind 7 to 10 mph. Chance of precipitation is 40%.|
+|Tuesday|A chance of rain showers. Mostly cloudy, with a high near 56. South wind around 9 mph, with gusts as high as 21 mph. Chance of precipitation is 50%.|
+|Tuesday Night|A slight chance of rain showers before midnight. Partly cloudy, with a low around 36.|
+|Wednesday|Sunny, with a high near 48.|
+|Wednesday Night|A slight chance of snow showers after midnight. Partly cloudy, with a low around 36.|
+|Thursday|A chance of snow showers before 9am, then a chance of rain and snow showers. Mostly cloudy, with a high near 51. Chance of precipitation is 50%.|
+|Thursday Night|A chance of rain showers. Mostly cloudy, with a low around 46. Chance of precipitation is 50%.|
+|Friday|A chance of rain showers. Cloudy, with a high near 66. Chance of precipitation is 50%.|
+|Friday Night|A chance of rain showers. Mostly cloudy, with a low around 45. Chance of precipitation is 40%.|
+|Saturday|A chance of rain showers. Partly sunny, with a high near 51. Chance of precipitation is 30%.|
+|Saturday Night|A slight chance of snow showers. Partly cloudy, with a low around 29.|
 
 # Acknowledgements
 
