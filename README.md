@@ -54,6 +54,7 @@ Use [curl](https://curl.haxx.se/) or open a web browser and visit `http://localh
 For example, `http://localhost:8080/weather/40.7688/-73.9898` on March 15, 2020 resulted in:
 
 |Time Period|Forecast|
+|-----------|--------|
 |Today|Sunny. High near 52, with temperatures falling to around 49 in the afternoon. North wind around 8 mph.|
 |Tonight|Mostly clear, with a low around 33. Northeast wind around 8 mph.|
 |Monday|Mostly sunny, with a high near 45. East wind around 10 mph.|
