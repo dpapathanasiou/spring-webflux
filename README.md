@@ -72,8 +72,49 @@ For example, `http://localhost:8080/weather/40.7688/-73.9898` on March 15, 2020 
 |Saturday|A chance of rain showers. Partly sunny, with a high near 51. Chance of precipitation is 30%.|
 |Saturday Night|A slight chance of snow showers. Partly cloudy, with a low around 29.|
 
+## Docker
+
+The [Dockerfile](Dockerfile) allows for running this application as a container.
+
+With Docker Desktop ([Mac](https://docs.docker.com/docker-for-mac/install/), [Windows](https://docs.docker.com/docker-for-windows/install/)) installed, build and tag the image like this:
+
+```sh
+docker image build -t spring-webflux:0.0.1 .
+```
+
+This should produce output similar to this, ending in a `Successfully tagged` message:
+
+```sh
+Sending build context to Docker daemon  26.68MB
+Step 1/4 : FROM adoptopenjdk:11-jre-hotspot
+11-jre-hotspot: Pulling from library/adoptopenjdk
+...
+[intermiediate output elided]
+...
+Successfully tagged spring-webflux:0.0.1
+```
+
+Running the application image as a container:
+
+```sh
+docker container run --publish 8080:8080 --detach --name weather-report spring-webflux:0.0.1
+```
+
+The `--detach` command runs the container in the background.
+
+The `--publish` command routes traffic from the external port to where the application expects it internally; in this case those are both 8080, but this could also be used to pick a different external value.
+
+While the container is running, a visit to `http://localhost:8080/weather/40.7688/-73.9898` produces the same table of results.
+
+To shut down the container, use this command, matching the `--name` from the previous step:
+
+```sh
+docker container rm --force weather-report
+```
+
 # Acknowledgements
 
 * [The introduction to Reactive Programming you've been missing](https://gist.github.com/staltz/868e7e9bc2a7b8c1f754)
 * [Writing tests for Spring WebClient with MockWebServer](https://codingtim.github.io/webclient-testing/)
 * [Correcting the `mockwebserver` version incompatibility with `okhttp`](https://github.com/square/okhttp/issues/5379#issuecomment-577573283)
+* [Docker Quickstart: Build and run your own version](https://docs.docker.com/get-started/part2/)
