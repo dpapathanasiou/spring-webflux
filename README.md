@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/dpapathanasiou/spring-webflux.svg?branch=master)](https://travis-ci.com/dpapathanasiou/spring-webflux)
+
 # About
 
 This is a simple experiment, to wrap my mind around how [Spring WebFlux](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web-reactive.html#spring-webflux) works, loosely based on [this guide](https://spring.io/guides/gs/reactive-rest-service/) and [corresponding repo](https://github.com/spring-guides/gs-reactive-rest-service).
