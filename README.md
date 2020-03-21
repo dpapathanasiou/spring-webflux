@@ -76,7 +76,7 @@ For example, `http://localhost:8080/weather/40.7688/-73.9898` on March 15, 2020 
 
 The [Dockerfile](Dockerfile) allows for running this application as a container.
 
-With Docker Desktop ([Mac](https://docs.docker.com/docker-for-mac/install/), [Windows](https://docs.docker.com/docker-for-windows/install/)) installed, build and tag the image like this:
+With Docker Desktop ([Mac](https://docs.docker.com/docker-for-mac/install/), [Windows](https://docs.docker.com/docker-for-windows/install/)) installed, build and tag the image like this, using the [image build](https://docs.docker.com/engine/reference/commandline/image_build/) command:
 
 ```sh
 docker image build -t spring-webflux:0.0.1 .
@@ -89,12 +89,12 @@ Sending build context to Docker daemon  26.68MB
 Step 1/4 : FROM adoptopenjdk:11-jre-hotspot
 11-jre-hotspot: Pulling from library/adoptopenjdk
 ...
-[intermiediate output elided]
+[intermediate output elided]
 ...
 Successfully tagged spring-webflux:0.0.1
 ```
 
-Running the application image as a container:
+To run the application image as a container:
 
 ```sh
 docker container run --publish 8080:8080 --detach --name weather-report spring-webflux:0.0.1
@@ -103,6 +103,8 @@ docker container run --publish 8080:8080 --detach --name weather-report spring-w
 The `--detach` command runs the container in the background.
 
 The `--publish` command routes traffic from the external port to where the application expects it internally; in this case those are both 8080, but this could also be used to pick a different external value.
+
+See the [container run](https://docs.docker.com/engine/reference/commandline/container_run/) reference for more options.
 
 While the container is running, a visit to `http://localhost:8080/weather/40.7688/-73.9898` produces the same table of results.
 
