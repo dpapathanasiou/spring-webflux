@@ -21,7 +21,7 @@ This requires a pair of API calls chained together, both of which are non-blocki
 To build and run this project from scratch, install both [Java](https://www.java.com/) and [Gradle](https://gradle.org/) via [SDKMAN!](https://sdkman.io):
 
 ```sh
-sdk install java 11.0.3.hs-adpt
+sdk install java 11.0.6.hs-adpt
 sdk install gradle 6.2.2
 ```
 
